@@ -45,4 +45,25 @@ print(f"Coefficient of Variation: {cv}%")
 outliers = [x for x in data if x < (q1 - 1.5 * iqr) or x > (q3 + 1.5 * iqr)]
 print(f"Outliers: {outliers}")
 
+# Plotting a histogram
+# Calculating the number of bins using Sturges' formula
+bins = int(1+3.322 * np.log10(n))  # Sturges' formula for bin count
+print(f"Number of bins (Sturges' formula): {bins}")
+# Plotting the histogram with the calculated number of bins
+plt.figure(figsize=(10, 6))
+plt.hist(data, bins=bins, edgecolor='black', color='pink', density=True)
+sns.kdeplot(data, fill=True, color="black")
+plt.xlabel('Value')
+plt.ylabel('Frequency')
+plt.title('Histogram')
+plt.grid()
+plt.show()
+
+# Plotting a boxplot
+plt.figure(figsize=(10, 6))
+plt.boxplot(data, vert=False, patch_artist=True, boxprops=dict(facecolor='pink', color='black'), medianprops=dict(color='black'))
+plt.xlabel('Value')
+plt.title('Boxplot')
+plt.grid()
+plt.show()
 
